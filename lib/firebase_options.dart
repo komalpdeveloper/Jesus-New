@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '757106583943',
     projectId: 'jesus-new-app',
     storageBucket: 'jesus-new-app.firebasestorage.app',
-    iosBundleId: 'com.jesusnew.app',
+    iosBundleId: 'com.cassarly.jesusnew',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
