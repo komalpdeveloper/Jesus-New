@@ -10,7 +10,7 @@ workflows:
       groups:
         - appkeys # Make sure this matches your group name
       vars:
-        BUNDLE_ID: "com.cassarly.jesusnew"
+        BUNDLE_ID: "com.jesusnew.app"
     scripts:
       - name: Set up keychain
         script: keychain initialize
