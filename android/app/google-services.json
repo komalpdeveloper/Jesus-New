@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "757106583943",
+    "project_id": "jesus-new-app",
+    "storage_bucket": "jesus-new-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757106583943:android:a1a7b007a041cb1c9b4b22",
+        "android_client_info": {
+          "package_name": "com.example.clientapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5dVcalzWfmC3unCpPngtZFrly2_KUQAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

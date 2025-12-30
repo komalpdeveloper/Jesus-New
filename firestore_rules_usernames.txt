@@ -1,0 +1,64 @@
+// Firestore Security Rules for Username System
+// Add these rules to your firestore.rules file
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection
+    match /users/{userId} {
+      // Allow users to read their own profile
+      allow read: if request.auth != null && request.auth.uid == userId;
+      
+      // Allow users to create their own profile (during sign-up)
+      allow create: if request.auth != null 
+                    && request.auth.uid == userId
+                    && request.resource.data.uid == userId;
+      
+      // Allow users to update their own profile
+      // But prevent username changes after it's set
+      allow update: if request.auth != null 
+                    && request.auth.uid == userId
+                    && (
+                      // If username doesn't exist yet, allow setting it
+                      !resource.data.keys().hasAny(['username'])
+                      // If username exists, don't allow changing it
+                      || request.resource.data.username == resource.data.username
+                    );
+      
+      // Prevent deletion
+      allow delete: if false;
+    }
+    
+    // Usernames collection
+    match /usernames/{username} {
+      // Anyone can read to check availability
+      allow read: if request.auth != null;
+      
+      // Only allow creating if:
+      // 1. User is authenticated
+      // 2. The uid matches the authenticated user
+      // 3. The username doesn't already exist
+      allow create: if request.auth != null 
+                    && request.resource.data.uid == request.auth.uid
+                    && !exists(/databases/$(database)/documents/usernames/$(username));
+      
+      // Prevent updates and deletes (usernames are permanent)
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // Optional: Add rate limiting for username checks
+    // This prevents abuse of the username availability check
+    match /usernames/{username} {
+      allow read: if request.auth != null
+                  && request.time < resource.data.lastCheck + duration.value(1, 's');
+    }
+  }
+}
+
+// Additional recommendations:
+// 1. Enable Firestore indexes for username queries
+// 2. Set up monitoring for suspicious patterns
+// 3. Consider adding a username reservation system
+// 4. Implement username reclamation for inactive accounts

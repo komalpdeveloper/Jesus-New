@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Journal entries - user can only access their own entries
+    match /journal/{userId}/entries/{entryId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Purchases collection
+    match /purchases/{purchaseId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if request.auth != null && request.resource.data.userId == request.auth.uid;
+    }
+    
+    // Store products - public read, admin write
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Categories - public read, admin write
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Banners - public read, admin write
+    match /banners/{bannerId} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Church content - public read, admin write
+    match /church/{section}/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Church sections - public read, admin write
+    match /churchSections/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Church radio tracks - public read, admin write
+    match /churchRadioTracks/{trackId} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Church radio snippets - public read, admin write
+    match /churchRadioSnippets/{snippetId} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+    
+    // Store listings - public read, admin write
+    match /store_listings/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null; // Add admin check if needed
+    }
+
+    // Aleph Reader / Verses - public read, admin write
+    match /{path=**}/verses/{verseId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>757106583943-7jnu5j0gsnecbemnkq8e3eli96uo6vgt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.757106583943-7jnu5j0gsnecbemnkq8e3eli96uo6vgt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDSfozEVMzLdsIpn8EuP49SAh-sccEjvWk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>757106583943</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cassarly.jesusnew</string>
+	<key>PROJECT_ID</key>
+	<string>jesus-new-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>jesus-new-app.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:757106583943:ios:f0d400faf633aae79b4b22</string>
+</dict>
+</plist>
